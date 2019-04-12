@@ -3,32 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package v3_2ex3;
+package v3_2ex4;
 
 /**
  *
  * @author aaro
  */
-import java.util. *;
 import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
-public class V3_2ex3 {
+public class V3_2ex4 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        IntStream.generate(() -> (int)(Math.random()*32+1)).limit(7).forEach((n) -> System.out.println(n));     
-        System.out.println("\n");
+        
         IntSupplier supp = new IntSupplier() {
+            int ret = 0;
+            int befo = 1;
+            int curr = ret + befo;
             @Override
             public int getAsInt() {
-                return (int)(Math.random()*32+1);
+                
+                curr = ret + befo;
+                ret = befo;
+                befo = curr;
+                return ret;
             }
         };
-        IntStream.generate(supp).limit(7).forEach((n) -> System.out.println(n));     
         
+        IntStream.generate(supp).limit(10).forEach((n) -> System.out.println(n));
     }
     
 }
