@@ -18,11 +18,7 @@ public class Piste {
         this.y = y;
     }
     
-    public Function makeSiirto(int x,int y){
-        return function(){
-        this.x = this.x +x;
-        this.y = this.y +y;
+    public static <Integer> makeSiirto(int x,int y){
         
-    };
     }
 }
